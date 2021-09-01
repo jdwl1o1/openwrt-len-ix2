@@ -3,6 +3,8 @@ openwrt for the Lenovo / Iomega IX2-DL NAS
 
 This project includes the files needed to compile OpenWRT for the lenovo / Iomega ix2-dl NAS
 
+details of openwrt are available at openwrt.org  
+
 Files and images are provided 'as is' with no warranty or guarantee.
 
 License is GPL2, unless otherwise specified in the files. No ownership is claimed over work of others.
@@ -15,7 +17,7 @@ Lenovo ix2-dl is a dual SATA NAS powered by a Marvell
  a larger nand flash unit. The IX2-DL was sold without drives, with the OS stored in nand.
 
 Specification:
-- SoC: Marvell Kirkwood 88F6281
+- SoC: Marvell Kirkwood 88F6282
 - CPU/Speed: 1600Mhz
 - Flash-Chip: Samsung NAND
 - Flash size: nand: 1024 MiB, SLC, erase size: 128 KiB, page size: 2048, OOB size: 64
@@ -25,7 +27,7 @@ Specification:
 - 1x USB 2.0
 - UART1: for serial console. UART0 not available.
 
-Installation instructions (modified version of the ix2-200 commit): 
+Installation instructions (modified from the ix2-200): 
 This runs OpenWrt from ram to allow sysupgrade to install to nand.
 
 1. download initramfs-uImage image and sysupgrade image, copy into tftp server or ext2 formatted usb drive
