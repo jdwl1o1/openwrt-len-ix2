@@ -1,0 +1,44 @@
+/* Device tree file for the Lenovo IOMEGA IX2-dl NAS box.
+ *
+ * Copyright (c) 2017, Daniel Helgason <daniel.k.helgason @ gmail.com>
+ *
+ */
+// SPDX-License-Identifier: GPL-2.0-only
+/dts-v1/;
+
+#include "kirkwood-lenovo-ix2-common.dtsi"
+/ {
+	model = "Lenovo ix2-dl";
+	compatible = "lenovo,ix2-dl", "marvell,kirkwood-88f6282", "marvell,kirkwood";
+};
+
+&nand {
+	status = "okay";
+	chip-delay = <35>;
+
+	partition@0 {
+		label = "uboot";
+		reg = <0x0 0x80000>;
+		read-only;
+	};
+
+	partition@0a0000 {
+		label = "uboot_env";
+		reg = <0xa0000 0x20000>;
+	};
+
+	partition@0c0000 {
+		label = "uboot_env2";
+		reg = <0xc0000 0x20000>;
+	};
+
+	partition@100000 {
+		label = "kernel";
+		reg = <0x100000 0x300000>;
+	};
+
+	partition@800000 {
+		label = "ubi";
+		reg = <0x800000 0x20000000>;
+	};
+};
