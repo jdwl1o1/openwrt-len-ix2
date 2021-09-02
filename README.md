@@ -15,7 +15,7 @@ Lenovo ix2-dl is a dual SATA NAS powered by a Marvell
  Was also sold by Iomega as the Iomega StorCentre ix2-dl.
  This device is very similar to the ix2-200 however it lacks 2 USB ports and includes 
  a larger nand flash unit. The IX2-DL was sold without drives, with the OS stored in nand.
-
+```
 Specification:
 - SoC: Marvell Kirkwood 88F6282
 - CPU/Speed: 1600Mhz
@@ -26,13 +26,13 @@ Specification:
 - WiFi: none
 - 1x USB 2.0
 - UART1: for serial console. UART0 not available.
-
+```
 Installation instructions (modified from the ix2-200): 
 This runs OpenWrt from ram to allow sysupgrade to install to nand.
 
 1. download initramfs-uImage image and sysupgrade image, copy into tftp server or ext2 formatted usb drive
 2. access uboot environment with serial cable and run
-    ```
+```
     setenv mainlineLinux yes
     setenv arcNumber 1682
     setenv console 'console=ttyS0,115200'
@@ -41,23 +41,25 @@ This runs OpenWrt from ram to allow sysupgrade to install to nand.
     setenv bootargs_root 'root='
     setenv bootcmd 'setenv bootargs ${console} ${mtdparts} ${bootargs_root}; nand read.e 0x800000 0x100000 0x300000; bootm 0x00800000'
     saveenv
-
+```
 For USB Boot:   
+```
  usb reset; ext2load usb 0:1 0x00800000 /initramfs.bin; bootm 0x00800000
-    ```
+```
 For TFTP boot:
+```
     setenv serverip [tftp server ip]    
     setenv ipaddr 192.168.1.13
     tftpboot 0x00800000 factory.bin
     bootm 0x00800000
-
+```
 3. ssh to openwrt and sysupgrade to install into flash
-    ```
+```
     mkdir /mnt/usb
     mount /dev/sda1 /mnt/usb
     cp /mnt/usb/*sysupgrade* /tmp   
     sysupgrade -n /tmp/sysupgrade.bin
-    ```
+```
 4. access openwrt by dhcp ip address assigned by your router or at 192.168.1.1
 
 note 1 - sata drives should not be installed when installing
